@@ -2,8 +2,8 @@
   "name": "JATE",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack",
-    "start": "webpack && webpack serve"
+    "build": "webpack --mode production",
+    "start": "webpack -d source-map"
   },
   "author": "2U",
   "license": "UNLICENSED",
@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "code-mirror-themes": "^1.0.0",
+    "core-js": "^3.38.0",
+    "file-loader": "^6.2.0",
     "idb": "^6.1.2"
   }
 }

@@ -30,19 +30,38 @@ module: {
   rules: [
     // ... existing rules
     {
+      test: /\.js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', {
+                  useBuiltIns: 'usage',   
+
+                  corejs: 3,
+                  targets:   
+ 'last 2 versions' // Adjust targets as needed
+                }]]}}}
+            
+    ,
+    {
       test: /\.css$/, // Matches all CSS files
       use: ['style-loader', 'css-loader'] // Use style-loader and css-loader
     },
     {
-      test: /\.m?js$/, // Matches all Js files
-      exclude: /(node_modules | bower_components)/, //Ignore these
-      use:{
-        loader: "babel-loader",
-        options:{
-          presets:['@babel/preset-env']
-        }
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      use: [ {
+        loader: 'file-loader',
+      options: {
+        outputPath: '/src/images',
+        name: '[name].[ext]'
       }
+    }
+    ]
+      ,
     },
+    
     // {
     //   test: /\.html$/,
     //   use:
