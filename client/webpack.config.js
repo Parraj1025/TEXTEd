@@ -25,48 +25,46 @@ module.exports = () => {
       }),
       new workboxPlugin.GenerateSW()
     ],
-// added loader for css
-module: {
-  rules: [
-    // ... existing rules
-    {
-      test: /\.js$/,
-          exclude: /(node_modules|bower_components)/,
+    // added loader for css
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: [
-                ['@babel/preset-env', {
+                ['@babel/preset-env',   {
+                  targets: 'last 2 versions',
                   useBuiltIns: 'usage',   
 
                   corejs: 3,
-                  targets:   
- 'last 2 versions' // Adjust targets as needed
-                }]]}}}
-            
-    ,
-    {
-      test: /\.css$/, // Matches all CSS files
-      use: ['style-loader', 'css-loader'] // Use style-loader and css-loader
-    },
-    {
-      test: /\.(png|svg|jpg|jpeg|gif)$/i,
-      use: [ {
-        loader: 'file-loader',
-      options: {
-        outputPath: '/src/images',
-        name: '[name].[ext]'
-      }
+                }],
+              ],
+            },
+          },
+        }
+        ,
+        {
+          test: /\.css$/, // Matches all CSS files
+          use: ['style-loader', 'css-loader'] // Use style-loader and css-loader
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              outputPath: '/src/images',
+              name: '[name].[ext]'
+            }
+          }
+          ]
+          ,
+        },
+
+      ]
     }
-    ]
-      ,
-    },
-    
-    // {
-    //   test: /\.html$/,
-    //   use:
-    // }
-  ]
-}
+
   };
 };
