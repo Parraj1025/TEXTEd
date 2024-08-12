@@ -15,7 +15,7 @@ butInstall.addEventListener('click', async () => {
         return
     };
 
-    defferedPrompt.prompt('are you sure?');
+    defferedPrompt.prompt();
 
     const { outcome } = await defferedPrompt.userChoice;
 
